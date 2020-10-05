@@ -15,7 +15,13 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 client.connect(err => {
-    const collection = client.db("volunteer").collection("registrations");
+  const collection = client.db("volunteer").collection("registrations");
+  app.get('/request', (req, res) => {
+    collection.find({})
+      .toArray((err, data) => {
+        res.send(data)
+      })
+    })
     app.get('/request/:pname', (req, res) => {
     collection.find({ name: req.params.pname})
       .toArray((err, data) => {
