@@ -13,10 +13,6 @@ const uri = `mongodb+srv://sakibsheikh:${process.env.DB_PASS}@cluster0.6d4vl.mon
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 app.get('/', (req, res) => {
   res.send('Hello World!')
-  console.log(client)
-})
-app.get('/hello', (req, res) => {
-  res.send('Hello World!')
 })
 client.connect(err => {
     const collection = client.db("volunteer").collection("registrations");
