@@ -13,6 +13,9 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
+app.get('/hello', (req, res) => {
+  res.send('Hello World!')
+})
 client.connect(err => {
     const collection = client.db("volunteer").collection("registrations");
     app.get('/request/:pname', (req, res) => {
