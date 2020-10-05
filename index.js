@@ -10,11 +10,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 const uri = `mongodb+srv://sakibsheikh:${process.env.PASS}@cluster0.6d4vl.mongodb.net/volunteer?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-app.get('/', (req, res) => {
+
+client.connect(err => {
+  const collection = client.db("volunteer").collection("registrations");
+  app.get('/', (req, res) => {
   res.send('Hello World!')
 })
-client.connect(err => {
-    const collection = client.db("volunteer").collection("registrations");
     app.get('/request/:pname', (req, res) => {
     collection.find({ name: req.params.pname})
       .toArray((err, data) => {
