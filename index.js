@@ -33,6 +33,6 @@ client.connect(err => {
     })
 });
 
-app.listen(4500, () => {
+app.listen(process.env.PORT || 4500, () => {
   console.log('port 4500 activated')
 })
