@@ -7,9 +7,10 @@ const ObjectId = require('mongodb').ObjectId;
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-require('dotenv').config();
+require("dotenv").config()
 
-const uri = `mongodb+srv://sakibsheikh:sakibsakib.@cluster0.6d4vl.mongodb.net/volunteer?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://sakibsheikh:${process.env.DB_PASS}@cluster0.6d4vl.mongodb.net/volunteer?retryWrites=true&w=majority`;
+console.log(process.env.DB_PASS)
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -17,7 +18,6 @@ app.get('/', (req, res) => {
 app.get('/hello', (req, res) => {
   res.send('Hello World!')
 })
-console.log(process.env.PASS)
 client.connect(err => {
     const collection = client.db("volunteer").collection("registrations");
     app.get('/request/:pname', (req, res) => {
