@@ -10,10 +10,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 require("dotenv").config()
 
 const uri = `mongodb+srv://sakibsheikh:${process.env.DB_PASS}@cluster0.6d4vl.mongodb.net/volunteer?retryWrites=true&w=majority`;
-console.log(process.env.DB_PASS)
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 app.get('/', (req, res) => {
   res.send('Hello World!')
+  console.log(client)
 })
 app.get('/hello', (req, res) => {
   res.send('Hello World!')
