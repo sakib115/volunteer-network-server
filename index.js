@@ -7,6 +7,7 @@ const ObjectId = require('mongodb').ObjectId;
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+require('custom-env').env()
 
 const uri = `mongodb+srv://sakibsheikh:${process.env.PASS}@cluster0.6d4vl.mongodb.net/volunteer?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -16,6 +17,7 @@ app.get('/', (req, res) => {
 app.get('/hello', (req, res) => {
   res.send('Hello World!')
 })
+console.log(process.env.PASS)
 client.connect(err => {
     const collection = client.db("volunteer").collection("registrations");
     app.get('/request/:pname', (req, res) => {
